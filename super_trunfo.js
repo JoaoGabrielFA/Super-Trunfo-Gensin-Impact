@@ -612,5 +612,5 @@ function jogarNovamente(){
     
     document.getElementById("btnSortear").style.visibility = "visible";
     
-    document.body.scrollTop = 0;
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
 }
