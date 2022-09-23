@@ -9,25 +9,49 @@
 
 <body>
     <header>
-
+        <!--<div id="menu">
+            <ul>
+                <li class="menuPrincipal">LISTA DE CARTAS
+                    <ul>
+                        <li class="menuSecundario"><button>TODOS</button></li>
+                        <li class="menuSecundario"><button>MONDSTADT</button></li>
+                        <li class="menuSecundario"><button>LIYUE</button></li>
+                        <li class="menuSecundario"><button>INAZUMA</button></li>
+                        <lI class="menuSecundario"><button>SUMERU</button></lI>
+                        <li class="menuSecundario"><button>OUTROS</button></li>
+                    </ul>
+                </li>
+                <li class="menuPrincipal">MODOS DE JOGO
+                    <ul>
+                        <li class="menuSecundario"><button>SIMPLES</button></li>
+                        <li class="menuSecundario"><button>DUELO</button></li>
+                        <li class="menuSecundario"><button>GUERRA</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>-->
     </header>
     
     
     <main>
         <div id="tabuleiro">
+            <div id="campoResultado">
+                <div id="resultado"></div>  
+            </div>
+            
             <section id="cartaJogador" class="carta">
                 <div id="nomeJogador" class="nomeCarta">?</div>
-                <div id="imagemJogador" class="imagemCarta"></div>
+                <div id="imagemJogador" class="imagemCarta"><button id="btnSortear" onclick="sortearCarta()">?</button></div>
                 <div id="statusJogador" class="statusCarta">
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>ATAQUE</div>
                         <div> ?</div>
                     </div>
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>DEFESA</div>
                         <div> ?</div>
                     </div>
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>INTELIGÊNCIA</div>
                         <div> ?</div>
                     </div>
@@ -38,27 +62,22 @@
                 <div id="nomeMaquina" class="nomeCarta">?</div>
                 <div id="imagemMaquina" class="imagemCarta"></div>
                 <div id="statusMaquina" class="statusCarta">
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>ATAQUE</div>
                         <div> ?</div>
                     </div>
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>DEFESA</div>
                         <div> ?</div>
                     </div>
-                    <div class='statusLabel'>
+                    <div class="statusLabel">
                         <div>INTELIGÊNCIA</div>
                         <div> ?</div>
                     </div>
                 </div>
             </section>
             
-            <button id="btnSortear" onclick="sortearCarta()">Sortear Carta</button>
-    
-            <button id="btnJogar" onclick="jogar()" disabled="true">Jogar</button>
-            
-            <div id="resultado"></div>
-            
+            <button id="btnJogarNovamente" onclick="jogarNovamente()">Jogar Novamente</button>
         </div>
     </main>
   

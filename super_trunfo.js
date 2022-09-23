@@ -512,7 +512,7 @@ const cartas = [
             INTELIGÊNCIA: 5,
         }
     }
-]
+];
 
 var carta_jogador;
 var carta_maquina;
@@ -533,50 +533,35 @@ function sortearCarta(){
     
     console.log(carta_jogador);
     
-    document.getElementById("btnSortear").disabled = true;
-    document.getElementById("btnJogar").disabled = false;
+    btnSortear.style.visibility = "hidden";
     
-    montarCartaJogador();
+    montarCarta("Jogador");
 }
 
-function montarCartaJogador(){
-    let nome_jogador = document.getElementById("nomeJogador");
-    
-    nome_jogador.innerHTML = carta_jogador.nome;
-    
-    let imagem_jogador = document.getElementById("imagemJogador");
-    
-    imagem_jogador.style.backgroundImage = `url(${carta_jogador.imagem})`;
-    
-    let opcoes_radio = "<div id='opcoes' class'carta-status'>"
-    
-    let opcoes_texto = "";
-
-    for(let atributo in carta_jogador.atributos){
-        opcoes_texto += `<input type='radio' name='atributo' class='statusRadio' id=${atributo} value=${atributo + ' ' + carta_jogador.atributos[atributo]}><label for=${atributo} class='statusLabel'><div>${atributo}</div><div>${carta_jogador.atributos[atributo]}</div></label>`;
-    }
-    
-    statusJogador.innerHTML = opcoes_radio + opcoes_texto + "</div>";
-}
-
-function montarCartaMaquina(){
-    let nome_maquina = document.getElementById("nomeMaquina");
-    
-    nome_maquina.innerHTML = carta_maquina.nome;
-    
-    let imagem_maquina = document.getElementById("imagemMaquina");
-    
-    imagem_maquina.style.backgroundImage = `url(${carta_maquina.imagem})`;
-    
-    let opcoes_radio = "<div id='opcoes' class'carta-status'>"
+function montarCarta(escolhida){
+    let carta_escolhida;
     
     let opcoes_texto = "";
     
-    for(let atributo in carta_maquina.atributos){
-        opcoes_texto += `<div name='atributo' class='statusLabel' value=${atributo + ' ' + carta_maquina.atributos[atributo]}><div>${atributo}</div><div>${carta_maquina.atributos[atributo]}</div></div>`;
+    if(escolhida == "Jogador"){
+        carta_escolhida = carta_jogador;
+        
+        for(let atributo in carta_escolhida.atributos){
+        opcoes_texto += `<input type='radio' name='atributo' class='statusRadio' id=${atributo} value=${atributo + ' ' + carta_escolhida.atributos[atributo]} onclick='jogar()'><label for=${atributo} class='statusLabel'><div>${atributo}</div><div>${carta_escolhida.atributos[atributo]}</div></label>`;
+        }
+    }else{
+        carta_escolhida = carta_maquina;
+        
+        for(let atributo in carta_escolhida.atributos){
+        opcoes_texto += `<div class='statusLabel'><div>${atributo}</div><div>${carta_escolhida.atributos[atributo]}</div></div>`;
+        }
     }
     
-    statusMaquina.innerHTML = opcoes_radio + opcoes_texto + "</div>";
+    document.getElementById("nome" + escolhida).innerHTML = carta_escolhida.nome;
+    
+    document.getElementById("imagem" + escolhida).style.backgroundImage = `url(${carta_escolhida.imagem})`;
+    
+    document.getElementById("status" + escolhida).innerHTML = "<div>" + opcoes_texto + "</div>";
 }
 
 function obtemAtributoSelecionado(){
@@ -601,5 +586,31 @@ function jogar(){
         resultado.innerHTML = "Empate!";
     }
     
-    montarCartaMaquina();
+    var radios = document.getElementsByName("atributo");
+
+    for (let i=0, iLen=radios.length; i<iLen; i++) {
+        radios[i].disabled = true;
+    } 
+    
+    montarCarta("Maquina");
+}
+
+function jogarNovamente(){
+    document.getElementById("resultado").innerHTML = "";
+    
+    document.getElementById("nomeJogador").innerHTML = "?";
+    
+    document.getElementById("nomeMaquina").innerHTML = "?";
+    
+    document.getElementById("imagemJogador").style.backgroundImage = "url('https://pbs.twimg.com/media/EsKxVLjXIAANrRn?format=jpg&name=large')";
+    
+    document.getElementById("imagemMaquina").style.backgroundImage = "url('https://pbs.twimg.com/media/EsKxVLjXIAANrRn?format=jpg&name=large')";
+    
+    document.getElementById("statusJogador").innerHTML = "<div><div class='statusLabel'><div>ATAQUE</div><div> ?</div></div><div class='statusLabel'><div>DEFESA</div><div> ?</div></div><div class='statusLabel'><div>INTELIGÊNCIA</div><div> ?</div></div></div>";
+    
+    document.getElementById("statusMaquina").innerHTML = "<div><div class='statusLabel'><div>ATAQUE</div><div> ?</div></div><div class='statusLabel'><div>DEFESA</div><div> ?</div></div><div class='statusLabel'><div>INTELIGÊNCIA</div><div> ?</div></div></div>";
+    
+    document.getElementById("btnSortear").style.visibility = "visible";
+    
+    document.body.scrollTop = 0;
 }
